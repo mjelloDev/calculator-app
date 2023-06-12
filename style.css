@@ -1,0 +1,75 @@
+/*CSS RESET */
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*-----------HEADER-----------*/
+
+.header {
+  position: fixed; /* Position the header element */
+  top: 0; /* Position the header at the top of the page */
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+}
+
+/*-----------MAIN CONTENT-----------*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 20px; /* Add padding to the top of the body */
+}
+
+.calculator-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center calculator content horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  max-width: 400px;
+  margin-top: 50px; /* Add margin to create space below the header */
+}
+
+.result {
+  background-color: bisque;
+}
+
+/*-----------FOOTER-----------*/
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+}
