@@ -1,7 +1,3 @@
-const num1 = 0;
-const operator = "+";
-const num2 = 0;
-
 function add(a, b) {
   return a + b;
 }
@@ -33,3 +29,20 @@ function operate(operator, num1, num2) {
   }
 }
 
+const numeric = document.querySelectorAll(".numeric");
+const opsymbol = document.querySelectorAll(".operator");
+const equalsign = document.querySelectorAll(".equal-sign");
+const calcbody = document.querySelectorAll(".calculator-body");
+let resultText = document.querySelector(".result");
+const num1 = 0;
+const operator = "+";
+const num2 = 0;
+
+equalsign.forEach((button) => {
+  button.addEventListener("click", () => {
+    // TODO CONNECT FUNCTION TO GET NUMBERS
+
+    const result = operate(operator, num1Value, num2Value);
+    resultText.textContent = result;
+  });
+});
