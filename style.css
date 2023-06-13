@@ -79,9 +79,13 @@ button:active {
   background-color: #f0ad4e;
 }
 
+.delete {
+  font-size: 3em;
+}
+
 .equal-sign {
   background-color: #5cb85c;
-  grid-column-end: span 3;
+  grid-column-end: span 2;
 }
 
 .clear {
