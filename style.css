@@ -92,6 +92,7 @@ button:active {
 
 .clear-all {
   background-color: #337ab7;
+  grid-column-end: span 3;
 }
 
 .footer {
