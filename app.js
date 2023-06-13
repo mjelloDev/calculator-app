@@ -14,17 +14,21 @@ function divide(a, b) {
   return a / b;
 }
 
-const equalSign = document.querySelectorAll(".equal-sign");
-const calcbody = document.querySelectorAll(".calculator-body");
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
 let resultText = document.querySelector(".result");
-
-const num1 = 0;
-const operator = "+";
-const num2 = 0;
 
 const numeric = document.querySelectorAll(".numeric");
 numeric.forEach((button) => {
   button.addEventListener("click", () => {
+    if (operator === "") {
+      // If no operator is selected yet, update the firstNumber
+      firstNumber += button.value;
+    } else {
+      // If an operator is already selected, update the secondNumber
+      secondNumber += button.value;
+    }
     resultText.textContent += button.value;
   });
 });
@@ -32,7 +36,11 @@ numeric.forEach((button) => {
 const opSymbol = document.querySelectorAll(".operator");
 opSymbol.forEach((button) => {
   button.addEventListener("click", () => {
-    resultText.textContent += ` ${button.value} `;
+    if (firstNumber !== "") {
+      // Only update the operator if a firstNumber is already entered
+      operator = button.value;
+      resultText.textContent += ` ${button.value} `;
+    }
   });
 });
 
@@ -43,17 +51,20 @@ function clearCalculator() {
   resultText.textContent = " ";
 }
 
+const equalSign = document.querySelectorAll(".equal-sign");
 equalSign.forEach((button) => {
   button.addEventListener("click", () => {
-    // Get the values of num1, operator, and num2 from the resultText element
-    const [num1, operator, num2] = resultText.textContent.split(" ");
+    if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
+      const num1Value = parseFloat(firstNumber);
+      const num2Value = parseFloat(secondNumber);
+      const result = operate(operator, num1Value, num2Value);
+      resultText.textContent = result;
 
-    // Convert num1 and num2 to numbers
-    const num1Value = parseFloat(num1);
-    const num2Value = parseFloat(num2);
-
-    const result = operate(operator, num1Value, num2Value);
-    resultText.textContent = result;
+      // Reset the variables for the next calculation
+      firstNumber = result.toString();
+      operator = "";
+      secondNumber = "";
+    }
   });
 });
 
@@ -71,3 +82,8 @@ function operate(operator, num1, num2) {
       return "Invalid operator";
   }
 }
+
+// TODO:
+// fix clicking equal sign = before any input
+// display and store every number input before doing operate
+// display error when dividing with zero
