@@ -3,41 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css" />
     <title>Calculator App</title>
   </head>
   <body>
-    <div class="header">
-      <h1>Calculator Online</h1>
-    </div>
-    <div class="container">
-      <div class="calculator-body">
-        <div class="result">8888</div>
-        <div class="buttons">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>+</button>
-          <button>-</button>
-          <button>*</button>
-          <button>/</button>
-          <button>=</button>
-          <button>.</button>
-          <button>C</button>
-          <button>CE</button>
-        </div>
+    <div class="calculator">
+      <div class="display">
+        <div class="result">0</div>
+      </div>
+      <div class="buttons">
+        <button class="operator" value="+">+</button>
+        <button class="operator" value="-">-</button>
+        <button class="operator" value="*">&times;</button>
+        <button class="operator" value="/">&divide;</button>
+        <button value="7">7</button>
+        <button value="8">8</button>
+        <button value="9">9</button>
+        <button id="clear" class="clear" value="C">C</button>
+        <button value="4">4</button>
+        <button value="5">5</button>
+        <button value="6">6</button>
+        <button id="clear-all" class="clear-all" value="CE">CE</button>
+        <button value="1">1</button>
+        <button value="2">2</button>
+        <button value="3">3</button>
+        <button value=".">.</button>
+        <button value="0">0</button>
+        <button id="equals" class="equal-sign" value="=">=</button>
       </div>
     </div>
     <div class="footer">
-      <p>Copyright Snappyjel 2023</p>
+      <p>Calculator App &copy; 2023</p>
     </div>
+    <script src="app.js" defer></script>
   </body>
 </html>
