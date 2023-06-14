@@ -90,7 +90,7 @@ button:active {
   grid-column-end: span 2;
 }
 
-.clear {
+.backspace {
   background-color: #d9534f;
 }
 
@@ -116,4 +116,3 @@ a:active {
   color: #333333;
   text-decoration: none;
 }
-
