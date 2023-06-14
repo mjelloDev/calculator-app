@@ -96,7 +96,7 @@ button:active {
 
 .clear-all {
   background-color: #337ab7;
-  grid-column-end: span 3;
+  grid-column-end: span 2;
 }
 
 .footer {
@@ -108,3 +108,12 @@ button:active {
   padding: 10px;
   text-align: center;
 }
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #333333;
+  text-decoration: none;
+}
+

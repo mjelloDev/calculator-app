@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let clear = document.querySelector(".clear-all");
   let numbers = document.querySelectorAll(".numeric");
   let operators = document.querySelectorAll(".operator");
-  let decimal = document.querySelector(".decimal");
 
   numbers.forEach((number) =>
     number.addEventListener("click", function () {
@@ -38,6 +37,16 @@ document.addEventListener("DOMContentLoaded", function () {
     calculate();
   });
 
+  let backspace = document.querySelector(".backspace");
+  backspace.addEventListener("click", function () {
+    backspaceHandler();
+    currentText.textContent = firstValue;
+  });
+
+  function backspaceHandler() {
+    firstValue = firstValue.slice(0, -1);
+  }
+
   function calculate() {
     const num1 = parseFloat(secondValue);
     const num2 = parseFloat(firstValue);
@@ -57,6 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function numericHandler(num) {
+    if (num === "." && firstValue.includes(".")) {
+      return; // Do nothing if a decimal point already exists
+    }
     firstValue += num;
   }
 
@@ -83,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return "Invalid operator";
     }
   }
-  //END
 });
 
 function add(a, b) {
@@ -99,5 +110,9 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (b === 0) {
+    return "C'mon Man";
+  }
+
   return a / b;
 }

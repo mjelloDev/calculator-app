@@ -16,6 +16,7 @@
         <button id="clear-all" class="clear-all calculator-body" value="C">
           C
         </button>
+        <button class="backspace calculator-body" value="DEL">&larr;</button>
         <button class="operator calculator-body" value="/">/</button>
         <button class="numeric calculator-body" value="7">7</button>
         <button class="numeric calculator-body" value="8">8</button>
@@ -37,7 +38,11 @@
       </div>
     </div>
     <div class="footer">
-      <p>Calculator App &copy; 2023</p>
+      <p>Copyright ©
+        <a href="https://github.com/snappyjel" target="_blank">- Snappyjel -</a>
+        <script>
+          document.write(new Date().getFullYear());
+        </script></p>
     </div>
     <script src="app.js" defer></script>
   </body>
