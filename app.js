@@ -1,3 +1,91 @@
+let firstValue = "";
+let secondValue = "";
+let operator = "";
+
+document.addEventListener("DOMContentLoaded", function () {
+  let previousText = document.querySelector(".previous");
+  let currentText = document.querySelector(".current");
+  let clear = document.querySelector(".clear-all");
+  let numbers = document.querySelectorAll(".numeric");
+  let operators = document.querySelectorAll(".operator");
+  let decimal = document.querySelector(".decimal");
+
+  numbers.forEach((number) =>
+    number.addEventListener("click", function () {
+      numericHandler(number.textContent);
+      currentText.textContent = firstValue;
+    })
+  );
+
+  operators.forEach((op) =>
+    op.addEventListener("click", function () {
+      operatorHandler(op.textContent);
+      previousText.textContent = `${secondValue} ${operator}`;
+      currentText.textContent = firstValue;
+    })
+  );
+
+  clear.addEventListener("click", function () {
+    firstValue = "";
+    secondValue = "";
+    operator = "";
+    previousText.textContent = firstValue;
+    currentText.textContent = firstValue;
+  });
+
+  let equal = document.querySelector("#equals");
+  equal.addEventListener("click", () => {
+    calculate();
+  });
+
+  function calculate() {
+    const num1 = parseFloat(secondValue);
+    const num2 = parseFloat(firstValue);
+
+    if (isNaN(num1) || isNaN(num2)) {
+      return "Invalid input";
+    }
+
+    const result = calculateOperation(operator, num1, num2);
+
+    firstValue = result.toString();
+    secondValue = "";
+    operator = "";
+
+    previousText.textContent = "";
+    currentText.textContent = result.toString();
+  }
+
+  function numericHandler(num) {
+    firstValue += num;
+  }
+
+  function operatorHandler(op) {
+    if (secondValue && operator) {
+      calculate();
+    }
+    operator = op;
+    secondValue = firstValue;
+    firstValue = "";
+  }
+
+  function calculateOperation(operator, num1, num2) {
+    switch (operator) {
+      case "+":
+        return add(num1, num2);
+      case "-":
+        return subtract(num1, num2);
+      case "*":
+        return multiply(num1, num2);
+      case "/":
+        return divide(num1, num2);
+      default:
+        return "Invalid operator";
+    }
+  }
+  //END
+});
+
 function add(a, b) {
   return a + b;
 }
@@ -13,77 +101,3 @@ function multiply(a, b) {
 function divide(a, b) {
   return a / b;
 }
-
-let firstNumber = "";
-let operator = "";
-let secondNumber = "";
-let resultText = document.querySelector(".result");
-
-const numeric = document.querySelectorAll(".numeric");
-numeric.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (operator === "") {
-      // If no operator is selected yet, update the firstNumber
-      firstNumber += button.value;
-    } else {
-      // If an operator is already selected, update the secondNumber
-      secondNumber += button.value;
-    }
-    resultText.textContent += button.value;
-  });
-});
-
-const opSymbol = document.querySelectorAll(".operator");
-opSymbol.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (firstNumber !== "") {
-      // Only update the operator if a firstNumber is already entered
-      operator = button.value;
-      resultText.textContent += ` ${button.value} `;
-    }
-  });
-});
-
-const clearAll = document.querySelector("#clear-all");
-clearAll.addEventListener("click", clearCalculator);
-
-function clearCalculator() {
-  resultText.textContent = " ";
-}
-
-const equalSign = document.querySelectorAll(".equal-sign");
-equalSign.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (firstNumber !== "" && operator !== "" && secondNumber !== "") {
-      const num1Value = parseFloat(firstNumber);
-      const num2Value = parseFloat(secondNumber);
-      const result = operate(operator, num1Value, num2Value);
-      resultText.textContent = result;
-
-      // Reset the variables for the next calculation
-      firstNumber = result.toString();
-      operator = "";
-      secondNumber = "";
-    }
-  });
-});
-
-function operate(operator, num1, num2) {
-  switch (operator) {
-    case "+":
-      return add(num1, num2);
-    case "-":
-      return subtract(num1, num2);
-    case "*":
-      return multiply(num1, num2);
-    case "/":
-      return divide(num1, num2);
-    default:
-      return "Invalid operator";
-  }
-}
-
-// TODO:
-// fix clicking equal sign = before any input
-// display and store every number input before doing operate
-// display error when dividing with zero
